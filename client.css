@@ -1,0 +1,160 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body, textarea, button {
+  background: #222222;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#info {
+  color: #949494;
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  font-size: 0.8em;
+  z-index: 1;
+  cursor: default;
+  text-align: right;
+  background: #222222;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#info p {
+  margin: 0;
+}
+
+#warnings {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  z-index: 2;
+}
+
+#warnings li {
+  width: calc(100% - 28px);
+  max-width: 356px;
+  background: red;
+  margin: 14px auto;
+  padding: 14px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  animation: fade-in 500ms;
+  box-shadow: 0 3px 10px #302d2d73;
+  cursor: default;
+}
+
+#content {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  resize: none;
+  display: none;
+}
+
+textarea, button {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  transition: all 500ms;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+textarea:focus, button:focus {
+  box-shadow: inset 0 0 0 2px #f1c43354;
+}
+
+aside {
+  text-align: center;
+  animation: fade-in 500ms;
+  display: none;
+}
+
+aside h1, aside p {
+  margin: auto;
+  margin-bottom: 10px;
+  width: calc(100% - 20px);
+  max-width: 500px;
+}
+
+aside h1 {
+  font-size: 2.4em;
+}
+
+aside p {
+  font-size: 1.1em;
+}
+
+button {
+  border: 2px solid #4a4a4a;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background: #4a4a4a;
+}
+
+.small {
+  display: none;
+}
+
+@media only screen and (max-width: 360px) {
+  .small {
+    display: block;
+  }
+
+  .big {
+    display: none;
+  }
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 5px;
+}
+
+::placeholder {
+  color: #949494;
+}

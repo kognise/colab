@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Colab</title>
+  <link rel='stylesheet' href='styles.css'>
+</head>
+<body>
+  <aside id='primer'>
+    <h1>Colab</h1>
+    <p>
+      Colab is a giant collaborative text area, meaning anyone can write, edit, or delete text at once. There's only one catch: each person can only add or remove one character every 5 minutes. The timeout is displayed in the lower right corner.
+    </p>
+    <button id='primer-ok'>Got it!</button>
+  </aside>
+
+  <aside id='blocked'>
+    <h1>Sorry!</h1>
+    <p>
+      To prevent cheating, you may only have one instance of Colab open at a time. Is it glitching out? Contact me @kognise on Twitter or Kognise#6356 on Discord.
+    </p>
+  </aside>
+
+  <div id='info'>
+    <p id='connections'></p>
+    <p id='ratelimit'></p>
+  </div>
+  <ul id='warnings'></ul>
+  <textarea id='content' placeholder='Enter stuff already!'></textarea>
+  <script src='script.js'></script>
+</body>
+</html>

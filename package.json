@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "dev": "nodemon server.js --ignore timeouts.json content.txt",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "browserify": "^13.3.0",
+    "debug": "^4.1.1",
+    "express": "^4.16.4",
+    "js-cookie": "^2.2.0",
+    "loose-envify": "^1.4.0",
+    "ms": "^2.1.1",
+    "socket.io": "^2.2.0",
+    "uglify-js": "^3.4.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
