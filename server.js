@@ -9,7 +9,7 @@ let content = ''
 let connections = 0
 let timeouts = {}
 const ips = []
-const ratelimit = 5000
+const ratelimit = 5 * 60 * 1000
 
 function loadStore() {
   debug('loading from store')
