@@ -42,5 +42,6 @@ module.exports = (file, env) => {
       debug('done!')
       return minified.code
     }
+    return code
   })
 }

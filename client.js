@@ -16,6 +16,7 @@ let oldContent = ''
 let latestUpdate = 0
 let currentRatelimit = 0
 let firstUpdate = false
+let cursorPosition = 0
 
 function updateRatelimit() {
   ratelimitArea.innerHTML = currentRatelimit <= 0 ? `
@@ -59,12 +60,15 @@ io.on('update', ({ content, timestamp }) => {
   }
   if (!firstUpdate) {
     firstUpdate = true
-    contentArea.style.display = 'block'
-    contentArea.focus()
+    if (Cookie.get('primed')) {
+      contentArea.style.display = 'block'
+      contentArea.focus()
+    }
   }
 
   latestUpdate = Date.now()
   contentArea.value = content
+  contentArea.setSelectionRange(cursorPosition, cursorPosition)
   oldContent = content
   debug(`updated content, timestamp ${timestamp}`)
 })
@@ -87,6 +91,15 @@ io.on('connections', (connections) => {
   `
 })
 
+function checkCursorPosition() {
+  if (cursorPosition === contentArea.selectionStart) return
+  debug(`updating cursor position from ${cursorPosition} to ${contentArea.selectionStart}`)
+  cursorPosition = contentArea.selectionStart
+}
+contentArea.addEventListener('keyup', checkCursorPosition)
+contentArea.addEventListener('click', checkCursorPosition)
+contentArea.addEventListener('focus', checkCursorPosition)
+
 contentArea.addEventListener('keyup', (event) => {
   if (contentArea.value === oldContent) {
     debug(`no edits made, disregarding ${event.key}`)
@@ -96,6 +109,7 @@ contentArea.addEventListener('keyup', (event) => {
     debug(`haven't received first update, disregarding ${event.key}`)
     return
   }
+  if (event.key === 'Backspace') cursorPosition--
   io.emit('update', contentArea.value)
   oldContent = contentArea.value
   currentRatelimit = process.env.RATELIMIT

@@ -9,7 +9,7 @@ let content = ''
 let connections = 0
 let timeouts = {}
 const ips = []
-const ratelimit = 1000 * 60 * 5
+const ratelimit = 5000
 
 function loadStore() {
   debug('loading from store')
@@ -68,7 +68,7 @@ app.get('/styles.css', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-  const ip = socket.client.conn.remoteAddress
+  const ip = socket.handshake.headers['x-forwarded-for'] || socket.conn.remoteAddress
   if (ips.includes(ip)) {
     socket.emit('connections', connections)
     socket.emit('blocked', 'ip')
