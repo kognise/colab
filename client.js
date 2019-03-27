@@ -69,6 +69,7 @@ io.on('update', ({ content, timestamp }) => {
   latestUpdate = Date.now()
   contentArea.value = content
   contentArea.setSelectionRange(cursorPosition, cursorPosition)
+  debug(`moved cursor to ${cursorPosition}`)
   oldContent = content
   debug(`updated content, timestamp ${timestamp}`)
 })
@@ -109,7 +110,10 @@ contentArea.addEventListener('keyup', (event) => {
     debug(`haven't received first update, disregarding ${event.key}`)
     return
   }
-  if (event.key === 'Backspace') cursorPosition--
+  if (event.key === 'Backspace') {
+    cursorPosition++
+    debug('backspace pressed, incrementing cursor position')
+  }
   io.emit('update', contentArea.value)
   oldContent = contentArea.value
   currentRatelimit = process.env.RATELIMIT
